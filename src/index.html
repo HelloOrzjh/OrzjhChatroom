@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>login</title>  
+        <link rel="shortcut icon" href="./images/logo.ico" type="image/x-icon"> 
+        <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+        <script language="javascript" type="text/javascript">
+            function load() { $(".loading").fadeOut("slow"); }
+        </script>
+        <style>
+            .loading {
+                position: absolute;
+                top: 0px;
+                left: 0px;
+                width: 100%;
+                height: 100%;
+                z-index: 9999;
+                overflow: hidden;
+                background: #000;
+            }
+            .loading img {
+                position: absolute;
+                top: 44%;
+                left: 44%;
+            }
+        </style>
+    </head>
+    <body onload="load();">
+        <!-- 加载界面 -->
+        <div class="loading" style="display: inline-block;"><img src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/login_loading.gif" width="200" height="30"></div>
+        
+        <!-- 登录界面 -->
+        <div id="login-main-bg" class="login-main-bg">
+            <img src="./images/main-ui.png" id="bg-pic" class="bg-pic">
+            <div id="login-main-ui" class="login-main-ui">
+                <div id="title" class="title">登录</div>
+                <div id="form" class="form">
+                    <input type="email" name="email" class="input-item" id="email" placeholder="邮箱">
+                    <input type="username" name="username" class="input-item" id="username" placeholder="用户名">
+                    <input type="password" name="password" class="input-item" id="password" placeholder="密码">
+                    <button class="btn-lg login-Btn" onclick="login();">注册/登录</button>
+                    <button class="btn-lg login-Btn" onclick="forgetPwd();">忘记密码</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 聊天室主界面 -->
+        <div id="chatroom-main-bg" class="chatroom-main-bg" style="display: none;">
+            <img src="./images/main-ui.png" id="bg-pic" class="bg-pic">
+            <div id="createGroup-div" class="createGroup-div" style="display: none;">
+                群组名称: <div id="createGroup-groupName" class="createGroup-groupName" contenteditable="true"></div><br> 
+                选择好友: <div id="createGroup-userList" class="createGroup-userList"></div><br>
+                <button id="createGroup-submit" class="createGroup-btn btn-sm" onclick="return CreateGroupDivSubmit();">确定</button>    
+                <button id="createGroup-close" class="createGroup-btn btn-sm" onclick="return CreateGroupDivClose();">关闭</button>    
+            </div>
+            <div id="modifyFont-div" class="modifyFont-div" style="display: none;">
+                字体样式: <select id="fontFamily" style="width: 40%;">
+                    <option selected="selected">宋体</option>
+                    <option>黑体</option>
+                    <option>微软雅黑</option>
+                    <option>微软正黑体</option>
+                    <option>新宋体</option>
+                    <option>新细明体</option>
+                    <option>细明体</option>
+                    <option>标楷体</option>
+                    <option>仿宋</option>
+                    <option>楷体</option>
+                </select><br>
+                字体大小: <select id="fontSize" style="width: 40%;">
+                    <option>15</option>
+                    <option>16</option>
+                    <option>17</option>
+                    <option>18</option>
+                    <option>19</option>
+                    <option selected="selected">20</option>
+                    <option>21</option>
+                    <option>22</option>
+                    <option>23</option>
+                    <option>24</option>
+                    <option>25</option>
+                </select><br>
+                <button id="modifyFont-submit" class="modifyFont-submit btn-sm" onclick="return ModifyFontDivSubmit();">确定</button>
+                <button id="modifyFont-close" class="modifyFont-close btn-sm" onclick="return ModifyFontDivClose();">关闭</button>
+            </div>
+            <div id="chatroom-main-ui" class="chatroom-main-ui">
+                <div id="left-content" class="left-content">
+                    <button type="button" class="aside-btn btn-lg" onclick="return ChangeToUser();">好友</button>
+                    <button type="button" class="aside-btn btn-lg" onclick="return ChangeToGroup();">群组</button>  
+                    <div id="aside-list" class="aside-list">
+                        <ul multiple="multiple" id="user-list" class="user-list list-group" style="display: none;"></ul>
+                        <ul multiple="multiple" id="group-list" class="group-list list-group" style="display: inline-block;"></ul>
+                    </div>
+                </div>
+                <div id="right-content" class="right-content">
+                    <div id="header" class="header">
+                        <h1 align="center" id="header-h1"></h1>
+                    </div>
+                    <div id="messages-content" class="messages-content">
+                    </div>
+                    <div id="toolbar" class="toolbar">
+                        <ul>
+                            <li>
+                                <button class="emoji_btn" id="emoji_btn_1" onclick="return false;" style="top: 633.567px; left: 242.952px;">表情</button> 
+                            </li>                               
+                            <li>
+                                <button id="createGroup" class="createGroup" onclick="return CreateGroupMenu();">创建群组</button>
+                            </li>
+                            <li>
+                                <form id="fileForm" class="fileForm" action="/upload" enctype="multipart/form-data" method="post" target="hiddenFrame">
+                                    <label for="fileInput" class="fileInputLabel">
+                                        <input type="button" id="fileInputBtn" class="fileInputBtn" value="上传文件">
+                                        <input type="file" id="fileInput" class="fileInput" name="fileInput" onchange="UploadFile();">
+                                    </label>
+                                </form>
+                            </li>
+                            <li>
+                                <label for="fileInput" class="fileInputLabel">
+                                    <input type="button" id="filePicBtn" class="fileInputBtn" value="发送图片">
+                                    <input type="file" id="filePic" class="fileInput" accept="image/*" onchange="return UploadPic();">
+                                </label>
+                            </li>
+                            <li>
+                                <button id="shakeBtn" class="shakeBtn" onclick="return SendShake();">窗口抖动</button>                           
+                            </li>
+                            <li>
+                                <button id="historyBtn" class="historyBtn" onclick="return SynchronousHistory();">同步消息</button>                
+                            </li>
+                            <li>
+                                <button id="printScreenBtn" class="printScreenBtn" onclick="return PrintScreen();">截图</button>                
+                            </li>
+                            <li>
+                                <button id="fontBtn" class="fontBtn" onclick="return ModifyFontDivMenu();">选择字体</button>                       
+                            </li>
+                        </ul>
+                    </div>
+                    <div id="message-input-area" class="message-input-area">
+                        <div id="message-input" class="message-input" contenteditable="true"></div>
+                    </div>
+                    <button id="send" class="send btn-lg" onclick="return SendMessage();">发送</button>
+                
+                </div>
+            </div>
+
+            <!-- 底部添加音乐组件 -->
+            <div id="player" class="aplayer"></div>
+        </div>
+ 
+        <iframe name="hiddenFrame" style="display: none;"></iframe>
+
+        <link rel="stylesheet" href="./css/login_layout.css" rel="stylesheet">
+        <link rel="stylesheet" href="./css/chatroom_layout.css">
+        <link rel="stylesheet" href="./css/emoji/jquery.mCustomScrollbar.min.css">
+        <link rel="stylesheet" href="./css/emoji/jquery.emoji.css">
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="./js/emoji/jquery.mousewheel-3.0.6.min.js"></script>
+        <script src="./js/emoji/jquery.mCustomScrollbar.min.js"></script>
+        <script src="./js/emoji/jquery.emoji.js"></script>
+        <script src="./js/emoji/myEmoji.js"></script> 
+        <script src="./js/html2canvas/html2canvas.js"></script>
+        <script src="https://cdn.bootcss.com/FileSaver.js/1.3.8/FileSaver.min.js"></script>
+        <script src="./js/index.js"></script>
+        <script src="./js/chat.js"></script>
+        <script src="./js/font.js"></script>
+        <script src="./js/history.js"></script>
+        <script src="./js/login.js"></script>
+        <script src="./js/message.js"></script>
+        <script src="./js/shake.js"></script>
+        <script src="./js/upload.js"></script>
+
+        <!-- bootstrap -->
+        <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">  
+    
+        <!-- aplayer -->
+        <link rel="stylesheet" href="./css/aplayer/APlayer.min.css">
+        <link rel="stylesheet" href="./css/aplayer/aplayer.css">
+        <script src="js/aplayer/APlayer.min.js"></script> 
+        <script src="js/aplayer/aplayer.js"></script>
+    </body>
+</html>

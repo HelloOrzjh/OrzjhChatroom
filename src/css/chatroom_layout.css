@@ -1,0 +1,295 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+.bg-pic {
+    opacity: 60%;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    z-index: -1;  
+}
+
+.chatroom-main-bg {
+    height: 100%;
+    width: 100%;
+}
+
+form {
+    height: 100%;
+    width: 100%;
+}
+
+.chatroom-main-ui {
+    width: 70%;
+    height: 90%;
+    border-radius: 15px;
+    padding: 0 50px;
+    position: absolute;
+    margin: auto;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 0;
+    opacity: 80%;
+    background: white;
+}
+/*
+.chatroom-main-ui div {
+    border: 3px solid black; 
+}
+*/
+.left-content {
+    position: relative;
+    float: left;
+    height: 100%;
+    width: 20%;
+}
+
+.aside-btn {
+    width: 45%;
+}
+
+.aside-list {
+    position: relative;
+    width: 98%;
+    height: 90%;
+    border: 4px solid rgb(99, 99, 255);
+    border-radius: 1px;
+    overflow: scroll;
+}
+
+.user-list {
+    width: 98%;
+    height: 90%;
+    list-style: none;
+}
+
+.group-list {
+    width: 98%;
+    height: 90%;
+    list-style: none;
+}
+
+.list-option {
+    height: 40px;
+}
+
+.user-list-class {
+    height: 100%;
+    width: 90%;
+    font-size: 20px;
+    float: left;
+    line-height: 25px;
+}
+
+.right-content {
+    position: relative;
+    float: right;
+    height: 100%;
+    width: 75%;
+    border: 4px solid black;
+    overflow: hidden;
+}
+
+.header {
+    height: 10%;
+    width: 100%;
+    border-bottom: 4px solid black;
+}
+
+.messages-content {
+    height: 50%;
+    width: 100%;  
+}
+
+.messages {
+    height: 100%;
+    width: 100%;
+    list-style: none;
+    overflow: scroll;
+}
+
+.toolbar {
+    height: 6%;
+    width: 100%;  
+    border-top: 2px solid gray;
+    border-bottom: 2px solid gray;
+}
+
+.toolbar ul {
+    height: 100%;
+    width: 100%;
+    list-style: none;
+    float: left;
+    overflow: hidden;
+    margin-top: 1px;
+}
+
+.toolbar ul li {
+    height: 100%;
+    width: 57px;
+    margin-right: 10px;
+    margin-top: 2px;
+    float: left;
+    font-weight: 100;
+}
+
+.toolbar ul li div {
+    width: 50px;
+    height: 25px;
+    border: 0px;
+    margin: 0px;
+}
+
+.toolbar ul li .emoji_btn {
+    display: inline-block;
+    cursor: pointer;
+    width: 60px;
+    height: 25px;
+}
+
+.toolbar ul li .createGroup {
+    display: inline-block;
+    cursor: pointer;
+    width: 60px;
+    height: 25px;
+}
+
+.toolbar ul li .fileInputLabel {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    width: 50px;
+    height: 25px;
+}
+
+.toolbar ul li .fileInputBtn {
+    width: 60px;
+    height: 25px;
+    font-weight: 100;
+}
+
+.toolbar ul li .shakeBtn {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    width: 60px;
+    height: 25px;
+}
+
+.toolbar ul li .historyBtn {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    width: 60px;
+    height: 25px;
+}
+
+.toolbar ul li .fontBtn {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    width: 60px;
+    height: 25px;
+}
+
+.toolbar ul li .printScreenBtn {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    width: 60px;
+    height: 25px;
+}
+
+.message-input-area {
+    height: 20%;
+    width: 100%;
+    border: 1px solid black;
+    margin-top: 3px;
+}
+
+.message-input {
+    height: 100%;
+    width: 100%;
+    font-size: 20px;
+    font-family: '宋体';
+}
+
+.send {
+    margin-top: 15px;
+    margin-right: 10px;
+    position: relative;
+    float: right;
+}
+
+.shake {
+    animation: shake 800ms ease-in-out;
+}
+
+@keyframes shake { /* 实现窗口水平抖动 */
+    10%, 90% { transform: translate3d(-1px, 0, 0); }
+    20%, 80% { transform: translate3d(+2px, 0, 0); }
+    30%, 70% { transform: translate3d(-4px, 0, 0); }
+    40%, 60% { transform: translate3d(+4px, 0, 0); }
+    50% { transform: translate3d(-4px, 0, 0); }
+    
+}
+
+.fileInputLabel .fileInput {
+    position: absolute;
+    z-index: 0;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    width: 50px;
+    height: 25px;
+}
+
+.createGroup-div {
+    position: absolute;
+    background-color: white;
+    z-index: 2005;
+    width: 15%;
+    height: 40%;
+    left: 40%;
+    top: 20%;
+    opacity: 75%;
+    font-size: 16px;
+    border: 4px solid black;
+    overflow: scroll;
+}
+
+.createGroup-groupName {
+    border: 2px solid gainsboro;
+}
+
+.createGroup-userList {
+    border: 2px solid gainsboro;
+}
+
+.redDotFadeIn {
+    float: right;
+    color: red;
+    height: 6px;
+    width: 6px;
+    margin-top: 6px;
+    border-radius: 50%;
+    background-color: red;
+}
+
+.modifyFont-div {
+    position: absolute;
+    background-color: white;
+    z-index: 2005;
+    width: 15%;
+    height: 40%;
+    left: 40%;
+    top: 20%;
+    opacity: 75%;
+    font-size: 16px;
+    border: 4px solid black;
+    overflow: scroll;
+}
